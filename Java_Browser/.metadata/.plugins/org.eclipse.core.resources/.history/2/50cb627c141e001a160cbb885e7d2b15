@@ -1,0 +1,41 @@
+import core.*;
+
+public class Evaluation {
+	private Document[] docN;
+	private Requete q;
+	
+	public Evaluation(Document[] docN, Requete q, int n) {
+		this.q=q;
+		this.docN = new Document[n];
+		for (int i=0;i<n;i++) {
+			this.docN[i] = docN[i];
+		}
+	}
+	
+	public double Precision() {
+		int docCom=0;
+		for (Document doc1 : docN) {
+			for (String doc2 : q.DocAttendus()) {
+				System.out.println(doc1.getId().equals("2185"));
+			}
+		}
+		
+		return docCom;
+	}
+	
+	public double Rappel() {
+		int docCom=0;
+		for (Document doc1 : docN) {
+			for (String doc2 : q.DocAttendus()) {
+				if (doc1.getId() == doc2)
+					docCom++;
+			}
+		}
+		
+		return docCom/q.DocAttendus().size();
+	}
+	
+	public double  Fmesure(){
+		return 2*(this.Precision()*this.Rappel())/(this.Precision()+this.Rappel());
+	}
+}

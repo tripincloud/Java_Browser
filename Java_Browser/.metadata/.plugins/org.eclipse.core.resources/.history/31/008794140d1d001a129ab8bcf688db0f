@@ -1,0 +1,17 @@
+import java.util.LinkedHashMap;
+
+import indexation.*;
+public class Precision extends Evaluation{
+
+	public Precision(Index i, int n){
+		super(i,n);
+	}
+
+	public double Mesure(LinkedHashMap<String, Double> DocN) {
+		int nbDocCom=0;
+		
+		for (String doc : docAttendus) {
+		}
+		return 0.;	
+	}
+}

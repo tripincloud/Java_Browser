@@ -1,0 +1,9 @@
+
+public class Requete {
+	private String query;
+	
+	public Requete() {
+		query="";
+	}
+
+}

@@ -1,0 +1,19 @@
+import java.util.LinkedHashMap;
+import indexation.Index;
+
+public class FMesure extends Evaluation{
+	private Precision p;
+	private Rappel r;
+	
+	public FMesure(Index i, int n) {
+		super(i, n);
+		p = new Precision(i, n);
+		r = new Rappel(i, n);
+	}
+
+	public double Mesure(LinkedHashMap<String, Double> docN) {
+		
+		return 2*(p*r)/(p+r);
+	}
+	
+}

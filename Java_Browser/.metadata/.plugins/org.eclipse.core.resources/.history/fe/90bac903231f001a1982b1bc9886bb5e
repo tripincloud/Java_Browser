@@ -1,0 +1,9 @@
+import javax.swing.JFrame;
+
+public class InterfaceGraphique extends JFrame{
+	
+	public InterfaceGraphique() {
+		super("Moteur de recherhce");
+		this.setVisible(true);
+	}
+}

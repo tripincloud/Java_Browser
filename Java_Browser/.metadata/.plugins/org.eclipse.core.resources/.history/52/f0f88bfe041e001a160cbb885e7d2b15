@@ -1,0 +1,88 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import core.Document;
+
+public class Requete {
+	private String n;
+	
+	public Requete() {
+		n="0";
+	}
+	
+	public String query() {
+		String query="";
+		BufferedReader f= null;
+		try {
+			f = new BufferedReader(new FileReader("cisi.qry"));
+			String ligne = f.readLine();
+			String[] lignecouper = ligne.split(" ");
+			while (ligne!=null && (!(lignecouper[0].equals(".I")) || !(lignecouper[1].equals(n)))) {
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			while (!ligne.equals(".W")) {
+				ligne=f.readLine();
+			}
+			lignecouper=ligne.split(" ");
+			ligne=f.readLine();
+			query="";
+			while (!lignecouper[0].equals(".I") && !ligne.equals(".B")) {
+				query += ligne+"\n";
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if (f!=null) {
+				try {
+					f.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return query;
+	}
+
+		
+	public ArrayList<Document> DocAttendus(){
+		if (n=="0")
+			return null;
+		try {
+			Scanner s =null;
+			
+			s = new Scanner(new BufferedReader(new FileReader("cisi.rel")));
+			s.useDelimiter("\n\\s*");
+			String[] scouper;
+			while (s.hasNext()) {
+				scouper = s.next().split("   ");
+				if (scouper[0].equals("1")){
+					String[] sscouper = scouper[1].split("	");
+					System.out.println(sscouper[0]);
+				}
+				s.next();
+			}
+		}catch(IOException e){
+			System.out.println("ErreurOpen");
+		}finally {
+			if (s!=null) {
+				s.close();
+			}	
+			
+		}
+		
+		return null;
+		
+	}
+	public String getn() {
+		return n;
+	}
+	
+
+}

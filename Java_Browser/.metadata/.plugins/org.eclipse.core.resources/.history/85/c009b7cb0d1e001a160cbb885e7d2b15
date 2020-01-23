@@ -1,0 +1,19 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import core.*;
+
+public abstract class Evaluation {
+	protected Document[] docA;
+	protected String q;
+	public Evaluation(Document[] docA, String q) {
+		this.docA=docA;
+		this.q=q;
+	}
+	
+	public abstract double Mesure(Document[] docN, int n);
+
+	
+	
+}

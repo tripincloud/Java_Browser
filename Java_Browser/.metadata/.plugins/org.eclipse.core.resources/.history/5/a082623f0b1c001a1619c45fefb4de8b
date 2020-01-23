@@ -1,0 +1,24 @@
+import java.util.HashMap;
+import indexation.*;
+
+public class VectorialCos extends IRMode1{
+	private Weighter w;
+	
+	public VectorialCos(Index i, Weighter w) {
+		super(i);
+		this.w=w;
+	}
+
+	public Double CalculNorme(HashMap<String, Integer> entry) {
+		return null;
+	}
+	public HashMap<String, Double> getDocScores(HashMap<String, Integer> queryProcessed) {
+		VectorialCart tmp = new VectorialCart(i, w);
+		HashMap<String, Double> score_tmp = tmp.getDocScores(queryProcessed);
+		
+		
+		return null;
+	}
+	
+	
+}

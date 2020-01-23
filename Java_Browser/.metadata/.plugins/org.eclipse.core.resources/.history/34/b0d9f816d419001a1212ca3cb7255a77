@@ -1,0 +1,17 @@
+import java.util.HashMap;
+import indexation.*;
+
+public abstract class IRMode1 {
+	protected Index i;
+	
+	public IRMode1(Index i){
+		this.i=i;
+	}
+	
+	public  LinkedHashMap<String,Double> runModel(String query){
+		HashMap<String,Integer> queryProcessed = getQueryProcessed(query);
+		HashMap<String,Double> docsScore = getDocScores(queryProcessed);
+		return getRanking(docsScore);
+	}
+	
+}

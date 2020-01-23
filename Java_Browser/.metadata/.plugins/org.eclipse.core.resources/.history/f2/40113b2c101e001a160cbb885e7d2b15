@@ -1,0 +1,16 @@
+import core.*;
+
+public class FMesure extends Evaluation{
+	private Precision p;
+	private Rappel r;
+	
+	public FMesure(Document[] docA, String q) {
+		super(docA, q);
+	}
+
+	@Override
+	public double Mesure(Document[] docN, int n) {
+		return 2*(p.Mesure(docN,n)*r.Mesure(docN,n))/(p.Mesure(docN,n)+r.Mesure(docN,n));
+	}
+	
+}

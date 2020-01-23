@@ -1,0 +1,14 @@
+import indexation.*;
+public class TestInterrogation {
+	public static void main(String[] args) {
+		Index index = Index.deserialize("CISIserialize");
+		String query = "boy";
+		
+		IRMode1 mod = new Boolean(index);
+		System.out.println(mod.runModel(query));
+		
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(index.getTfsForStem("boy")+"\n");
+
+	}
+}

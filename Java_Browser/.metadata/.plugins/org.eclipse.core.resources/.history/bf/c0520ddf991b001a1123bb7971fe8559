@@ -1,0 +1,14 @@
+import java.util.HashMap;
+
+import indexation.*;
+
+public abstract class Weighter {
+	protected Index i;
+	
+	public Weighter(Index i) {
+		this.i=i;
+	}
+	
+	public abstract HashMap <String,Double> PoidsDocument(String doc);
+	public abstract HashMap <String,Double> PoidsRequete(String doc);
+}

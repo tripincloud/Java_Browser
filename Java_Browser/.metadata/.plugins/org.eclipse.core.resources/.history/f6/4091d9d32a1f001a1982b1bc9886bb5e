@@ -1,0 +1,51 @@
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedHashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import indexation.Index;
+
+public class InterfaceGraphique extends JFrame implements ActionListener{
+	private JTextField q =  new JTextField("La requete");
+	private JButton entrer = new JButton("Entrer");
+	private Index i;
+	
+	public InterfaceGraphique(Index i) {
+		super("Moteur de recherche");
+		this.i=i;
+		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		JPanel contentPane = (JPanel) this.getContentPane();
+		contentPane.setLayout(new FlowLayout());
+		
+		entrer.addActionListener(this);
+		q.addActionListener(this);
+		contentPane.add(q);
+		contentPane.add(entrer);
+		JLabel label = new JLabel("Bienvenue dans ma modeste application");
+		 
+		panel.add(label);
+	}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == entrer){
+			VectorialCart c = new VectorialCart(i, new WeighterTFIDF(i));
+			LinkedHashMap<String, Double> res = c.runMode1(q.getText());
+			System.out.println(res);
+		}
+	}	
+	
+	public static void main(String[] args) {
+		Index i = Index.deserialize("CISIserialize");
+		InterfaceGraphique g = new InterfaceGraphique(i);
+		g.setVisible(true);
+	}
+
+}

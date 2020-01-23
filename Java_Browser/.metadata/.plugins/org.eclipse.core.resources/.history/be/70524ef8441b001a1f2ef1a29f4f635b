@@ -1,0 +1,29 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import indexation.*;
+
+public class Boolean extends IRMode1{
+	
+	public Boolean(Index i) {
+		super(i);
+	}
+	
+	public LinkedHashMap<String, Double> runModel(String phrase) {
+		String[] sep = phrase.split("\\s");
+		LinkedHashMap<String, Double> res= new LinkedHashMap<String,Double>();
+		for (String mot : sep){
+			for (String doc: i.getDocs().keySet()){
+				if (i.getTfsForDoc(doc).containsKey(mot)){
+					if (res.containsKey(doc) && (res.get(doc)==0)){
+						res.remove(doc);
+					}
+					res.put(doc, 1);
+				}
+			}
+		}
+		
+		return res;
+	}
+}
+	

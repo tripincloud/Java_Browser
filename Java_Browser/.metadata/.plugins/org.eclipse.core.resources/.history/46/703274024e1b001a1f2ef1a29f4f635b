@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+import indexation.*;
+public class TestInterrogation {
+	public static void main(String[] args) {
+		Index i = Index.deserialize("CISIserialize");
+		String query = "computer_aid young";
+		
+		IRMode1 modB = new Boolean(i);
+		HashMap<String, Integer> queryProcessed = modB.getQueryProcessed(query);
+		//System.out.println(modB.getDocScores(queryProcessed));
+		//System.out.println(i.getTfsForDoc("2300"));
+		
+		/*System.out.println("Les id des documents contenants le mot young avec son occurence\n");
+		System.out.println(i.getTfsForStem("computer_aid")+"\n");
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("attempt")+"\n");
+		*/
+		for (String doc : i.getDocs().keySet()) {
+			if (i.getTfsForDoc(doc).containsKey("computer_aid") && i.getTfsForDoc(doc).containsKey("young"))
+				System.out.println(doc);
+		}
+	}
+}

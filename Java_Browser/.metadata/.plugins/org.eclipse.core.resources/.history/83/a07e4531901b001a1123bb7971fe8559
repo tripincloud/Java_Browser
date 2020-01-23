@@ -1,0 +1,17 @@
+import java.util.HashMap;
+
+import indexation.*;
+
+public class VectorialCart extends IRMode1{
+	private WeighterTF w;
+	
+	public VectorialCart(Index i, WeighterTF w) {
+		super(i);
+		this.w=w;
+	}
+	
+	public HashMap<String, Double> getDocScores(HashMap<String, Integer> queryProcessed) {
+
+		return null;
+	}
+}

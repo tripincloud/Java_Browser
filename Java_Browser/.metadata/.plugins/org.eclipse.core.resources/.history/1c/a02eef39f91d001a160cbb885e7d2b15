@@ -1,0 +1,106 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+import core.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+	
+import indexation.*;
+public class TestInterrogation {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		Index i = Index.deserialize("CISIserialize");
+		String query = "What problems and concerns are there in making up descriptive titles?\n" + 
+				"What difficulties are involved in automatically retrieving articles from\n" + 
+				"approximate titles?\n" + 
+				"What is the usual relevance of the content of articles to their titles?";
+		Weighter w_TF = new WeighterTF(i);
+		Weighter w_TFIDF = new WeighterTF(i);
+		IRMode1 modB = new Boolean(i);
+		IRMode1 modCart = new VectorialCos(i,w_TFIDF);
+		HashMap<String, Integer> queryProcessed = modB.getQueryProcessed(query);
+		/*System.out.println(i.getTfsForDoc("2300"));
+		
+		System.out.println("Les id des documents contenants le mot young avec son occurence\n");
+		System.out.println(i.getTfsForStem("computer_aid")+"\n");
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("attempt")+"\n");
+		
+		for (String doc : i.getDocs().keySet()) {	
+			if (i.getTfsForDoc(doc).containsKey("computer_aid") && i.getTfsForDoc(doc).containsKey("young"))
+				System.out.println(doc);
+		}
+			
+		System.out.println(modCart.runMode1(query));
+	
+		Document[] docN = new Document[modCart.runMode1(query).size()];
+		
+		int i2=0;
+		for (String i3 : modCart.runMode1(query).keySet()) {
+			docN[i2]=i.getDoc(i3);
+			i2++;
+		}*/
+		Scanner s =null;
+		BufferedReader f= null;
+		BufferedReader f2 = null;
+		try {
+			f = new BufferedReader(new FileReader("cisi.qry"));
+			String ligne = f.readLine();
+			String[] lignecouper = ligne.split(" ");
+			while (ligne!=null && (!(lignecouper[0].equals(".I")) || !(lignecouper[1].equals("47")))) {
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			while (!ligne.equals(".W")) {
+				ligne=f.readLine();
+			}
+			lignecouper=ligne.split(" ");
+			ligne=f.readLine();
+			query="";
+			while (!lignecouper[0].equals(".I") && !ligne.equals(".B")) {
+				query += ligne+"\n";
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			
+		}catch (IOException e) {
+			System.out.println("ErreurOpen");
+		}finally {
+			if (f!=null) {
+				f.close();
+			}
+		}
+		
+		try {
+			/*f2 = new BufferedReader(new FileReader("cisi.rel"));
+			String ligne = f2.readLine();
+			String[] lignecouper = ligne.split("     ");
+			System.out.println(lignecouper[0]);
+			while (ligne!=null) {
+				//System.out.println(lignecouper[2]);
+				ligne=f2.readLine();
+				if (ligne !=null)
+					lignecouper = ligne.split("    ");
+			*/
+			s = new Scanner(new BufferedReader(new FileReader("cisi.rel")));
+			//s.useDelimiter("\n\\s*");
+			while (s.hasNext()) {
+				System.out.println(s.next());
+			}
+		}catch(IOException e){
+			System.out.println("ErreurOpen");
+		}finally {
+			if (s!=null) {
+				s.close();
+			}	
+			
+		}
+		//System.out.println(query);
+		
+		
+	}
+}

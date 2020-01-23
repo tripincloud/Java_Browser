@@ -1,0 +1,16 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class InterfaceGraphique extends JFrame{
+	
+	public InterfaceGraphique() {
+		super("Moteur de recherche");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		JPanel contentPane = (JPanel) this.getContentPane();
+		contentPane.add(new JTextField("OK"));
+	}
+}

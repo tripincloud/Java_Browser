@@ -1,0 +1,103 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import core.Document;
+import indexation.*;
+
+public class Requete {
+	private String q;
+	private Index i
+	public Requete(String q,i) {
+		this.q=q;
+		this.i=i;
+	}
+	
+	public String query() {
+		String query="";
+		BufferedReader f= null;
+		try {
+			f = new BufferedReader(new FileReader("cisi.qry"));
+			String ligne = f.readLine();
+			String[] lignecouper = ligne.split(" ");
+			while (ligne!=null && (!(lignecouper[0].equals(".I")) || !(lignecouper[1].equals(q)))) {
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			while (!ligne.equals(".W")) {
+				ligne=f.readLine();
+			}
+			lignecouper=ligne.split(" ");
+			ligne=f.readLine();
+			query="";
+			while (!lignecouper[0].equals(".I") && !ligne.equals(".B")) {
+				query += ligne+"\n";
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if (f!=null) {
+				try {
+					f.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return query;
+	}
+
+		
+	public ArrayList<Document> DocAttendus(){
+		ArrayList<Document> docA = new ArrayList<Document>();
+		if (q=="0") {
+			return null;
+		}else {
+			BufferedReader f2 = null;
+			try {
+				f2 = (new BufferedReader(new FileReader("cisi.rel")));
+				String[] scouper,sscouper,ssscouper;
+				String ligne = f2.readLine();
+				while (ligne!=null) {
+					scouper = ligne.split("   ");
+					sscouper = scouper[1].split(" ");
+					ssscouper = scouper[2].split(" ");
+					
+					for (String s3 : sscouper) {
+						if (!s3.equals("") && s3.equals(q)) {
+							for (String s4 : ssscouper) {
+								if (!s4.equals(""))
+									docA.add(i.s4.split("	")[0]);
+							}
+						}
+					}
+
+					ligne = f2.readLine();
+				}
+			}catch(IOException e){
+				System.out.println("ErreurOpen");
+			}finally {
+				if (f2!=null) {
+					try {
+						f2.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}	
+				
+			}
+		}
+		return docA;
+		
+	}
+	
+	public String getQ() {
+		return q;
+	}
+	
+
+}

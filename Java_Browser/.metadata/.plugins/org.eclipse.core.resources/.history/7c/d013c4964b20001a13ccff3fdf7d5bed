@@ -1,0 +1,42 @@
+import java.util.HashMap;
+import indexation.Index;
+
+public class VectorielCB extends IRModel{
+	private WeighterTF w;
+	public VectorielCartesien(Index index, WeighterTF w) {
+		super(index);
+		this.w=w;
+	}
+	
+	@Override
+	public HashMap<String, Double> getDocScores(HashMap<String, Integer> queryProcessed) {
+		HashMap<String, Double> scores = new HashMap<String, Double>();
+		HashMap<String, Double> freq_mots = w.frequence_mot(queryProcessed);
+		int nbdoc=index.getDocs().size();
+		//String doc="444";
+		
+		double vecteur_poids=0.0;
+		
+		for(String doc : index.getDocs().keySet()) {
+			for(String freq_doc : w.frequence_doc(doc).keySet()) {
+				for(String mot : freq_mots.keySet()) {
+					if(freq_doc.equals(mot)) {
+						//resultat pour TF
+						vecteur_poids = vecteur_poids + (freq_mots.get(mot)* w.frequence_doc(doc).get(freq_doc));
+											}
+				}
+			}
+			if(vecteur_poids != 0) {
+			scores.put(doc, vecteur_poids);
+			vecteur_poids=0.0;
+			}
+		}
+		
+		return scores;
+
+
+	
+	
+
+	}
+}

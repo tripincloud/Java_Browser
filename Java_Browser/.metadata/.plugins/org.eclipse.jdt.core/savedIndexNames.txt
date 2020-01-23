@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+/home/santhos/Info-upmc/LU2IN002/projet/.metadata/.plugins/org.eclipse.jdt.core
+646308851.index
+1122151991.index
+1987518867.index

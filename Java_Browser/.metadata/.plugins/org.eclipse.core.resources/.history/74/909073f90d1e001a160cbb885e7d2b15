@@ -1,0 +1,18 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import core.*;
+
+public class Evaluation {
+	private ArrayList<String> docA = new ArrayList<String>();
+	private Requete r;
+	public Evaluation(Requete r) {
+		this.r=r;
+	}
+	
+
+	
+	
+}

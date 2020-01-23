@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Requete {
+	private String query_;
+	
+	public Requete() {
+		query_="";
+	}
+	
+	public void Requete(String n) {
+		String query="";
+		BufferedReader f= null;
+		try {
+			f = new BufferedReader(new FileReader("cisi.qry"));
+			String ligne = f.readLine();
+			String[] lignecouper = ligne.split(" ");
+			while (ligne!=null && (!(lignecouper[0].equals(".I")) || !(lignecouper[1].equals(n)))) {
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			while (!ligne.equals(".W")) {
+				ligne=f.readLine();
+			}
+			lignecouper=ligne.split(" ");
+			ligne=f.readLine();
+			query="";
+			while (!lignecouper[0].equals(".I") && !ligne.equals(".B")) {
+				query += ligne+"\n";
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if (f!=null) {
+				try {
+					f.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		query_ = query;
+	}
+
+	public String getQuery_() {
+		return query_;
+	}
+	
+
+}

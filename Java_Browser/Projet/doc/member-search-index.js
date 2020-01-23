@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"Evaluation","l":"Evaluation(ArrayList<Document>, Requete, int)","url":"%3Cinit%3E(java.util.ArrayList,Requete,int)"},{"p":"<Unnamed>","c":"Evaluation","l":"Fmesure()"},{"p":"<Unnamed>","c":"Evaluation","l":"getDocN()"},{"p":"<Unnamed>","c":"Evaluation","l":"Precision()"},{"p":"<Unnamed>","c":"Evaluation","l":"Rappel()"}]

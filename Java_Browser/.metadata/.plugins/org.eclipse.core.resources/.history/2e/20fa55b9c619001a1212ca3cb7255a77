@@ -1,0 +1,13 @@
+import java.util.HashMap;
+
+import indexation.*;
+public abstract class IRMode1 {
+	private Index i;
+	
+	public IRMode1(Index i){
+		this.i=i;
+	}
+	
+	public abstract HashMap<String,Integer> runModel(String mot);
+	
+}

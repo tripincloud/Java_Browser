@@ -1,0 +1,20 @@
+import java.util.LinkedHashMap;
+
+import indexation.*;
+public class Rappel extends Evaluation{
+
+	public Rappel(Index i, int n){
+		super(i,n);
+	}
+
+	public double Mesure(LinkedHashMap<String, Double> docN) {
+		int nbDocCom=0;
+		String[] listeDocN = this.DocN(docN);
+		for (String doc : listeDocN) {
+			if (docAttendus.contains(doc)) {
+				nbDocCom++;
+			}
+		}
+		return nbDocCom/docAttendus.size();	
+	}
+}

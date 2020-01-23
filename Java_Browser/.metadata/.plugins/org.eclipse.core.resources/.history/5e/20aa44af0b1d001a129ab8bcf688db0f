@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
+import indexation.*;
+public abstract class Evaluation {
+	protected Index i;
+	protected ArrayList<String> docAttendus = new ArrayList<String>();
+	protected String listeDoc[];
+	
+	public Evaluation(Index i, int n) {
+		this.i=i;
+		listeDoc = new String[n];
+	}
+	
+	public void DocN(LinkedHashMap<String, Double> docN) {
+		int i=0;
+		for (String doc : docN.keySet()) {
+			if (i<listeDoc.length) {
+				listeDoc[i] = doc;
+				i++;
+			}
+		}
+	}
+	
+	public abstract double Mesure(LinkedHashMap<String, Double> docN);
+}

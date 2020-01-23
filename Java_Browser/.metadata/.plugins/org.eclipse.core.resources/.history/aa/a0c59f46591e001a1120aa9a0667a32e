@@ -1,0 +1,57 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import core.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+	
+import indexation.*;
+public class TestInterrogation {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		Index i = Index.deserialize("CISIserialize");
+		String query = "Describe presently working and planned systems for publishing and printing\n" + 
+				"original papers by computer, and then saving the byproduct, articles coded in\n" + 
+				"data-processing form, for further use in retrieval.";
+		Weighter w_TF = new WeighterTF(i);
+		Weighter w_TFIDF = new WeighterTF(i);
+		IRMode1 modB = new Boolean(i);
+		IRMode1 modCart = new VectorialCart(i,w_TF);
+		HashMap<String, Integer> queryProcessed = modB.getQueryProcessed(query);
+		/*System.out.println(i.getTfsForDoc("2300"));
+		
+		System.out.println("Les id des documents contenants le mot young avec son occurence\n");
+		System.out.println(i.getTfsForStem("computer_aid")+"\n");
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("attempt")+"\n");
+		
+		for (String doc : i.getDocs().keySet()) {	
+			if (i.getTfsForDoc(doc).containsKey("computer_aid") && i.getTfsForDoc(doc).containsKey("young"))
+				System.out.println(doc);
+		}
+		*/
+		LinkedHashMap<String, Double> res = modCart.runMode1(query);
+		System.out.println(query);
+		System.out.println(res);
+		
+		Requete q1 = new Requete("7",i);
+		query=q1.Query();
+		System.out.println(query);
+		
+	
+		Document[] docN = new Document[res.size()];
+		
+		int indice=0;
+		for (String id : modCart.runMode1(query).keySet()){
+			docN[indice]=i.getDoc(id);
+			indice++;
+		}
+		//Evaluation e1 = new Evaluation(modCart.runMode1(query).keySet(), q1, 10);
+		System.out.println(res);
+		for (Document d1 : q1.DocAttendus()) {
+			for (Document d2 : docN) {
+				if (d2.getId().equals(d1.getId()))
+					System.out.println("OK");
+			}
+		}
+	}
+}

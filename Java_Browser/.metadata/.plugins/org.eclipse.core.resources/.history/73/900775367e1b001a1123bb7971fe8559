@@ -1,0 +1,21 @@
+import java.util.HashMap;
+
+import indexation.*;
+
+public class WeighterTF {
+	private Index i;
+	
+	public WeighterTF(Index i) {
+		this.i=i;
+	}
+	
+	public HashMap <String,Integer> PoidsDocument(String doc){
+		HashMap <String,Integer> val = new HashMap<String, Integer>();
+		for (String mot : i.getTfsForDoc(doc).keySet()) {
+			System.out.println(i.getTfsForDoc(doc).get(mot)+"\t"+i.getTfsForDoc(doc).size()+"\t"+(double) i.getTfsForDoc(doc).get(mot)/i.getTfsForDoc(doc).size());
+			val.put(mot, (i.getTfsForDoc(doc).get(mot)/i.getTfsForDoc(doc).size()));
+		}
+		
+		return val;
+	}
+}

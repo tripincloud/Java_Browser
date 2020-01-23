@@ -1,0 +1,5 @@
+import indexation.*;
+
+public class WeighterTFIDF {
+
+}

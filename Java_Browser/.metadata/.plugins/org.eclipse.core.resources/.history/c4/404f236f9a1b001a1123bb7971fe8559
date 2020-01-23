@@ -1,0 +1,19 @@
+import java.util.HashMap;
+import indexation.*;
+
+public class VectorialCos extends IRMode1{
+	private Weighter w;
+	
+	public VectorialCos(Index i, Weighter w) {
+		super(i)
+		this.w=w;
+	}
+
+	@Override
+	public HashMap<String, Double> getDocScores(HashMap<String, Integer> queryProcessed) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

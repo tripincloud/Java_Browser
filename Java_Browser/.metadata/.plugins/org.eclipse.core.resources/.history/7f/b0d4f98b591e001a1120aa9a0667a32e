@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Set;
+
+import core.*;
+
+public class Evaluation {
+	private ArrayList<Document> docN;
+	private Requete q;
+	
+	public Evaluation(ArrayList<Document> docN, Requete q, int n) {
+		this.q=q;
+		this.docN=docN;
+		int i=0;
+		for (Document id : docN) {
+			if (i<n)
+				this.docN.add(id);
+		}
+	}
+	
+	public double Precision() {
+		int docCom=0;
+		for (String doc1 : docN) {
+			for (String doc2 : q.DocAttendus()) {
+				System.out.println(doc1.equals("2185"));
+			}
+		}
+		
+		return docCom;
+	}
+	
+	public double Rappel() {
+		int docCom=0;
+		for (String doc1 : docN) {
+			for (String doc2 : q.DocAttendus()) {
+				if (doc1 == doc2)
+					docCom++;
+			}
+		}
+		
+		return docCom/q.DocAttendus().size();
+	}
+	
+	public double  Fmesure(){
+		return 2*(this.Precision()*this.Rappel())/(this.Precision()+this.Rappel());
+	}
+}

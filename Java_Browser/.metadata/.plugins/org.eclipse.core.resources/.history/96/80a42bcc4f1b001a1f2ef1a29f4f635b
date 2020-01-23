@@ -1,0 +1,26 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import indexation.*;
+
+public abstract class IRMode1 {
+	protected Index i;
+	
+	public IRMode1(Index i){
+		this.i=i;
+	}
+	
+	public  LinkedHashMap<String, Double> runMode1(String query){
+		HashMap<String,Integer> queryProcessed = getQueryProcessed(query);
+		HashMap<String,Double> docsScore = getDocScores(queryProcessed);
+		return getRanking(docsScore);
+	}
+	
+	public HashMap<String,Integer> getQueryProcessed (String query){
+		TextRepresenter textRep = i.getTextRepresenter();
+		HashMap<String, Integer> ret = textRep.getTextRepresentation(query);
+		return ret;
+	}
+	
+	public abstract HashMap<String,Double> getDocScores(HashMap<String,Integer> queryProcessed);
+}

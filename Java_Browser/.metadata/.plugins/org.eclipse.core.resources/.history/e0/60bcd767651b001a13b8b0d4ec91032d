@@ -1,0 +1,11 @@
+import indexation.*;
+
+public class WeighterTF {
+	private Index i;
+	
+	public WeighterTF(Index i) {
+		this.i=i;
+	}
+	
+	public HashMap<String,Hashmap <String,Double>> PoidsDocuments()
+}

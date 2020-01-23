@@ -1,0 +1,9 @@
+import indexation.*;
+
+public class WeighterTF {
+	private Index i;
+	
+	public WeighterTF() {
+		
+	}
+}

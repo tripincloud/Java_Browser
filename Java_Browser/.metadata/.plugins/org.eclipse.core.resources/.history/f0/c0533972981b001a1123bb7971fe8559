@@ -1,0 +1,10 @@
+import java.util.HashMap;
+import indexation.*;
+
+public class WeighterTFIDF{
+	private Index i;
+	
+	public WeighterTFIDF(Index i) {
+		
+	}
+}

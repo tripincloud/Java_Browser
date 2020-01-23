@@ -1,0 +1,83 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import indexation.Index;
+
+public class InterfaceGraphique extends JFrame implements ActionListener{
+	private JTextField q =  new JTextField();
+	private JButton entrer = new JButton("Entrer");
+	private JPanel contentPane = (JPanel) this.getContentPane();
+	private JScrollPane res;
+	private JTextArea docs = new JTextArea();
+	private Index i;
+	
+	public InterfaceGraphique(Index i) {
+		super("Moteur de recherche");
+		this.i=i;
+		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		
+		entrer.addActionListener(this);
+		q.addActionListener(this);
+		contentPane.add(BarreDeRecherche(), BorderLayout.NORTH);
+		
+		res = new JScrollPane(docs);
+		contentPane.add(res);
+	}
+	
+	public JPanel BarreDeRecherche(){
+		JPanel panel = new JPanel(new FlowLayout());
+		q.setPreferredSize(new Dimension(200,30));
+		panel.add(q);
+		panel.add(entrer);
+		
+		return panel;
+	}
+	
+	public void Resultat(String text) {
+		String tmp = docs.getText();
+		docs.setText(tmp+text);
+	}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == entrer){
+			docs.setText("");
+			VectorialCart modCart = new VectorialCart(i, new WeighterTF(i));
+			LinkedHashMap<String, Double> res_mod = modCart.runMode1(q.getText());
+			for (String doc : res_mod.keySet()) {
+				if (n<10) {
+					try {
+						Resultat("Document "+doc+" :"+"\n\n"+i.getDoc(doc).getText()+"\n\n");
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+ 	}	
+	
+	public static void main(String[] args) {
+		Index i = Index.deserialize("CISIserialize");
+		InterfaceGraphique g = new InterfaceGraphique(i);
+		g.setVisible(true);
+	}
+
+}

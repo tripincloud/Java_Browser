@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+import indexation.*;
+
+public class Boolean extends IRMode1{
+	
+	public Boolean(Index i) {
+		super(i);
+	}
+	
+	public HashMap<String, Integer> runModel(String phrase) {
+		String[] sep = phrase.split("\\s");
+		HashMap<String, Integer> res= new HashMap<String, Integer>();
+		for (String doc: i.getDocs().keySet()) {
+			for (String mot : sep) {
+				if (i.getTfsForDoc(doc).containsKey(mot)){
+					res.put(doc,1);
+				}else
+			}		res.put(doc,0);
+		}
+		return res;
+	}
+}
+	

@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import core.*;
+
+public class Evaluation {
+	private Document[] docN;
+	private Requete q;
+	
+	public Evaluation(Document[] docN, Requete q) {
+		this.docN=docN;
+		this.q=q;
+	}
+	
+	public double Precision() {
+		int docCom=0;
+		for (Document doc1 : docN) {
+			for (Document doc2 : docA) {
+				if (doc1.getId() == doc2.getId())
+					docCom++;
+			}
+		}
+		
+		return docCom/docN.length;
+	}
+	
+}

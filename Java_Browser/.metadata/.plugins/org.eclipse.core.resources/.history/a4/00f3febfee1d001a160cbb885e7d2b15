@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
+import core.Document;
+import indexation.*;
+public abstract class Evaluation {
+	protected Document[] docA;
+	protected String q;
+	protected int n;
+	public Evaluation(Document[] docA, String q, int n) {
+		this.docA=docA;
+		this.q=q;
+		this.n=n;
+	}
+	
+	public abstract double Mesure(Document[] docN, int n);
+}

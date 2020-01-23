@@ -1,0 +1,45 @@
+import indexation.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+
+public class TestIndexation {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+	
+		Index i = Index.deserialize("CISIserialize");
+		/*
+		System.out.println("Texte du document 55\n");
+		System.out.println(i.getDoc("55").getText()+"\n");
+		
+		System.out.println("Les occurrences du document 55\n");
+		System.out.println(i.getTfsForDoc("55")+"\n");
+		
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("attempt")+"\n");
+		
+		System.out.println("Le nombres de termes du document 55\n");	
+		System.out.println(i.getTfsForDoc("55").size()+"\n");
+		
+		System.out.println("Le nombre de document contenant attempt\n");
+		System.out.println(i.getTfsForStem("attempt").size()+"\n");
+		
+		
+		System.out.println("Le contenu des documents contenants le mot attempt\n");
+		
+		for (String doc : i.getTfsForStem("attempt").keySet()) { //Recupere les tout les id des docs contenant attempt 
+			System.out.println(String.format("Contenu du document %s:\n%s\n\n", doc,i.getDoc(doc).getText()));	//Affiche les docs 
+		}
+		
+		HashMap<String,Double> score_doc = new HashMap<String,Double>();
+		for (String doc : i.getDocs().keySet()) {	// Parcourt les id de tout les documents contenus dans i
+			score_doc.put(doc,(Math.round(Math.random()*200*10.0)/10.0));	//Le second argument de put permet d'avoir une valeur avec une decimale
+		}
+		
+		System.out.println("Les scores des documents\n");
+		System.out.println(score_doc+"\n\n");
+	*/
+		
+		IRMode1 modB = new Boolean(i);
+		modB.getQueryProcessed("attempt");
+	}
+}

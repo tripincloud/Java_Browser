@@ -1,0 +1,12 @@
+import javax.swing.JFrame;
+
+public class InterfaceGraphique extends JFrame{
+	
+	public InterfaceGraphique() {
+		super("Moteur de recherche");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+	}
+}

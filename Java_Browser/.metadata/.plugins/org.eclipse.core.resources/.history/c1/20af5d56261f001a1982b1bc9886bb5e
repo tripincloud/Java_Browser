@@ -1,0 +1,27 @@
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class InterfaceGraphique extends JFrame{
+	
+	public InterfaceGraphique() {
+		super("Moteur de recherche");
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		JPanel contentPane = (JPanel) this.getContentPane();
+		contentPane.setLayout(new FlowLayout());
+		contentPane.add(new JButton("OK"));
+		contentPane.add(new JCheckBox("ok2"));
+		JTextField c =  new JTextField();
+		contentPane.add(c);
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

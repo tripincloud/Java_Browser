@@ -1,0 +1,50 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import core.*;
+
+public abstract class Evaluation {
+	protected Document[] docA;
+	protected String q;
+	public Evaluation(Document[] docA, String q) {
+		this.docA=docA;
+		this.q=q;
+	}
+	
+	public abstract double Mesure(Document[] docN, int n);
+
+	
+	public String Requete(String n) {
+		String query="";
+		BufferedReader f= null;
+		try {
+			f = new BufferedReader(new FileReader("cisi.qry"));
+			String ligne = f.readLine();
+			String[] lignecouper = ligne.split(" ");
+			while (ligne!=null && (!(lignecouper[0].equals(".I")) || !(lignecouper[1].equals(n)))) {
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			while (!ligne.equals(".W")) {
+				ligne=f.readLine();
+			}
+			lignecouper=ligne.split(" ");
+			ligne=f.readLine();
+			query="";
+			while (!lignecouper[0].equals(".I") && !ligne.equals(".B")) {
+				query += ligne+"\n";
+				ligne=f.readLine();
+				lignecouper=ligne.split(" ");
+			}
+			
+		}catch (IOException e) {
+			System.out.println("ErreurOpen");
+		}finally {
+			if (f!=null) {
+				f.close();
+			}
+		}
+		return query;
+	}
+}

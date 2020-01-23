@@ -1,0 +1,19 @@
+import java.util.HashMap;
+
+import indexation.*;
+public class TestInterrogation {
+	public static void main(String[] args) {
+		Index i = Index.deserialize("CISIserialize");
+		String query = "attempt";
+		
+		IRMode1 modB = new Boolean(i);
+		HashMap<String, Integer> queryProcessed = modB.getQueryProcessed(query);
+		modB.getDocScores(queryProcessed);
+		/*
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("young")+"\n");
+		System.out.println("Les id des documents contenants le mot attempt avec son occurence\n");
+		System.out.println(i.getTfsForStem("attempt")+"\n");
+		*/
+	}
+}

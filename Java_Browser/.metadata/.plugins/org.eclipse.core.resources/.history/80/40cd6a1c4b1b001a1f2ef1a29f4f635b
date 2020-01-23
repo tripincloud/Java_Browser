@@ -1,0 +1,23 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import indexation.*;
+
+public class Boolean extends IRMode1{
+	
+	public Boolean(Index i) {
+		super(i);
+	}
+	
+	public HashMap<String,Double> getDocScores(HashMap<String,Integer> queryProcessed){
+		HashMap<String,Double> docScores = new HashMap<String,Double>();
+		
+			
+		}
+		
+		
+		
+		return docScores;
+	}
+}
+	

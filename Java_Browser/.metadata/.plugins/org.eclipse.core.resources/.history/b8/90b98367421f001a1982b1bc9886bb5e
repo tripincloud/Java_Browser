@@ -1,0 +1,68 @@
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import indexation.Index;
+
+public class InterfaceGraphique extends JFrame implements ActionListener{
+	private JTextField q =  new JTextField("La requete");
+	private JButton entrer = new JButton("Entrer");
+	private JPanel contentPane = (JPanel) this.getContentPane();
+	private JLabel label = new JLabel("<html>PasChanger<br>OK<html>");
+	private JScrollPane res;
+	private JTextArea docs = new JTextArea();
+	private Index i;
+	
+	public InterfaceGraphique(Index i) {
+		super("Moteur de recherche");
+		this.i=i;
+		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		
+		entrer.addActionListener(this);
+		q.addActionListener(this);
+		contentPane.add(BarreDeRecherche(), BorderLayout.NORTH);
+		
+		res = new JScrollPane(docs);
+		contentPane.add(res);
+	}
+	
+	public JPanel BarreDeRecherche(){
+		JPanel panel = new JPanel(new FlowLayout());
+		panel.add(q);
+		panel.add(entrer);
+		
+		return panel;
+	}
+	
+	public void Resultat(String text) {
+		docs.setText(docs.getText()+text);
+	}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == entrer){
+			Resultat("ok\n");
+			//System.out.println(docs.);
+			//res.add(docs);
+		}
+		return; 
+	}	
+	
+	public static void main(String[] args) {
+		Index i = Index.deserialize("CISIserialize");
+		InterfaceGraphique g = new InterfaceGraphique(i);
+		g.setVisible(true);
+	}
+
+}

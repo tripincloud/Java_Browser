@@ -1,0 +1,15 @@
+import java.util.HashMap;
+
+import indexation.*;
+
+public class Boolean extends IRMode1{
+	
+	public Boolean(Index i) {
+		super(i);
+	}
+	
+	@Override
+	public HashMap<String, Integer> runModel(String mot) {
+		return null;
+	}
+}

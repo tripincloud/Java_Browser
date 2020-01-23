@@ -1,0 +1,16 @@
+import java.util.LinkedHashMap;
+
+import indexation.Index;
+
+public class FMesure extends Evaluation{
+
+	public FMesure(Index i, int n) {
+		super(i, n);
+	}
+
+	public double Mesure(LinkedHashMap<String, Double> docN) {
+		
+		return 0;
+	}
+	
+}
